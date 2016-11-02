@@ -84,7 +84,7 @@ const uint8_t small_heart_arr[] {
     0, 0, 0, 0, 0,
     0, 1, 0, 1, 0,
     0, 1, 1, 1, 0,
-    0, 1, 1, 0, 0,
+    0, 0, 1, 0, 0,
     0, 0, 0, 0, 0,
 };
 
@@ -98,17 +98,22 @@ MicroBitImage small_heart(5,5,small_heart_arr);
  * Challenge: make only certain micro:bits respond to these
  */
 static void onButtonA(MicroBitEvent) {
-    uBit.radio.datagram.send("1");    
+    uBit.radio.datagram.send("1");
 }
 
 static void onButtonB(MicroBitEvent) {
-    uBit.radio.datagram.send("2");    
+    uBit.radio.datagram.send("2");
 }
 
 /* We toggle broadcasting if both buttons are pressed together */
 static void onButtonAB(MicroBitEvent) {
     broadcast = !broadcast;
-    uBit.display.print("!");
+    if (broadcast) {
+        uBit.display.print("O");
+    } else {
+        uBit.display.print("X");
+    }
+    uBit.sleep(500);
 }
 
 
@@ -121,17 +126,18 @@ static void onData(MicroBitEvent) {
     } else if (s == "2") {
         uBit.display.print(small_heart);
     }
-    
+
     /* For detecting the presence of our friend, we require them to be sending
      * the same group name as we are in 
      */ 
-    if (s == group_name && rssi < 70) {
+    if (s == group_name && rssi < 50) {
         // We can make this larger to allow more missed packets
         friend_seen = 3;
     }
 }
 
 void run_proximity_heart() {
+    uBit.display.print('G');
     // Setup some button handlers to allow direct heartbeat control with buttons
     uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_EVT_ANY, onButtonA);
     uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_EVT_ANY, onButtonB);
@@ -142,18 +148,18 @@ void run_proximity_heart() {
 
     uBit.radio.enable();
 
-    while(1) {
+    while (1) {
         if (friend_seen) {
             uBit.display.print(full_heart); 
             friend_seen -= 1;
         } else {
             uBit.display.print(empty_heart);
         }
-        
+
         if (broadcast) {
             uBit.radio.datagram.send(group_name);
         }
 
-        uBit.sleep(1000);
+        uBit.sleep(700);
     }
 }
