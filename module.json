@@ -1,0 +1,14 @@
+{
+  "name": "micropair-demos",
+  "version": "0.0.1",
+  "description": "Mutiple demos for connecting a couple of micro:bits.",
+  "license": "MIT",
+  "dependencies": {
+    "microbit": "lancaster-university/microbit"
+  },
+  "bin": "./src",
+  "extraIncludes": [
+    "inc"
+  ],
+  "targetDependencies": {}
+}
