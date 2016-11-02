@@ -48,7 +48,9 @@ DEALINGS IN THE SOFTWARE.
  */
 
 #include "MicroBit.h"
-#include "proximity-heart.h"
+
+#include "main.h"
+#include "proximity_heart.h"
 
 
 // Have we seen a friend recently?
@@ -135,7 +137,7 @@ void run_proximity_heart() {
     uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_EVT_ANY, onButtonB);
     uBit.messageBus.listen(MICROBIT_ID_BUTTON_AB, MICROBIT_EVT_ANY, onButtonAB);
 
-    //Setup a hander to run when data is received
+    // Setup a hander to run when data is received
     uBit.messageBus.listen(MICROBIT_ID_RADIO, MICROBIT_RADIO_EVT_DATAGRAM, onData);
 
     uBit.radio.enable();
