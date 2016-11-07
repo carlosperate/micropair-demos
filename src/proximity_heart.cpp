@@ -136,7 +136,7 @@ static void onData(MicroBitEvent) {
     }
 }
 
-void run_proximity_heart() {
+void runProximityHeart() {
     uBit.display.print('G');
     // Setup some button handlers to allow direct heartbeat control with buttons
     uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_EVT_ANY, onButtonA);

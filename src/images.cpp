@@ -87,7 +87,7 @@ const uint8_t IMAGEDATA_SAD[] __attribute__ ((aligned (4))) = {
     0, 1, 1, 1, 0,
     1, 0, 0, 0, 1,
 };
-MicroBitImage IMAGE_SAD((ImageData*)(void*)IMAGEDATA_HAPPY);
+MicroBitImage IMAGE_SAD((ImageData*)(void*)IMAGEDATA_SAD);
 
 const uint8_t IMAGEDATA_ANGRY[] __attribute__ ((aligned (4))) = {
     0xff, 0xff, 5, 0, 5, 0,

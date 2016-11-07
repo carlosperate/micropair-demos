@@ -26,6 +26,6 @@ DEALINGS IN THE SOFTWARE.
 #ifndef PROXIMITY_HEART_H
 #define PROXIMITY_HEART_H
 
-void run_proximity_heart();
+void runProximityHeart();
 
 #endif
