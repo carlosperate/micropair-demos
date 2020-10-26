@@ -1,6 +1,7 @@
 {
 	"name": "Dev Container Definition Template - Dockerfile",
-	"image": "ghcr.io/carlosperate/devcontainer-microbit:latest",
+	//"image": "ghcr.io/carlosperate/devcontainer-microbit:latest",
+	"image": "ghcr.io/carlosperate/microbit-toolchain:latest",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
